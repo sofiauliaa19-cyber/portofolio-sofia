@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sofi - Contact</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <style>
+    :root {
+      --cream: #f7f4ef;
+      --white: #fffdfa;
+      --brown: #8a725b;
+      --dark: #302b26;
+      --muted: #817970;
+      --border: #e8dfd5;
+      --soft: #eee5db;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      line-height: 1.7;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    nav {
+      width: 100%;
+      background: rgba(247, 244, 239, 0.95);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 30px;
+      font-weight: 600;
+      color: var(--brown);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 35px;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 14px;
+      transition: 0.3s;
+      position: relative;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--brown);
+    }
+
+    .nav-links a.active::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      background: var(--brown);
+      bottom: -6px;
+      left: 0;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 25px;
+      color: var(--brown);
+      cursor: pointer;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 40px;
+    }
+
+    .section-label {
+      color: var(--brown);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 500;
+    }
+
+    .contact-hero {
+      padding: 90px 0 60px;
+      text-align: center;
+    }
+
+    .contact-hero h1 {
+      font-size: clamp(40px, 6vw, 72px);
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .contact-hero h1 span {
+      color: var(--brown);
+      font-style: italic;
+    }
+
+    .contact-hero p {
+      max-width: 600px;
+      margin: auto;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .contact-section {
+      padding: 40px 0 100px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 35px;
+      align-items: stretch;
+    }
+
+    /* LEFT INFO */
+
+    .contact-info {
+      background: var(--soft);
+      padding: 45px;
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .contact-info h2 {
+      font-size: 34px;
+      margin-bottom: 15px;
+    }
+
+    .contact-info>p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 35px;
+    }
+
+    .info-item {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+
+    .info-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--white);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .info-item h4 {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+
+    .info-item p,
+    .info-item a {
+      font-size: 13px;
+      color: var(--muted);
+      word-break: break-word;
+    }
+
+    .info-item a:hover {
+      color: var(--brown);
+    }
+
+    .social-area {
+      margin-top: auto;
+      padding-top: 30px;
+    }
+
+    .social-area h4 {
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .social-links a {
+      border: 1px solid #d6c7b7;
+      padding: 9px 18px;
+      border-radius: 30px;
+      font-size: 12px;
+      color: var(--brown);
+      transition: 0.3s;
+    }
+
+    .social-links a:hover {
+      background: var(--brown);
+      color: white;
+    }
+
+    /* FORM */
+
+    .contact-form {
+      background: var(--white);
+      padding: 45px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+    }
+
+    .contact-form h2 {
+      font-size: 34px;
+      margin-bottom: 10px;
+    }
+
+    .form-desc {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 30px;
+    }
+
+    .form-group {
+      margin-bottom: 22px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 9px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      outline: none;
+      background: var(--cream);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: var(--dark);
+      transition: 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--brown);
+      box-shadow: 0 0 0 3px rgba(138, 114, 91, 0.08);
+    }
+
+    .form-group textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: #b2a79c;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 15px 25px;
+      background: var(--brown);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .submit-btn:hover {
+      background: var(--dark);
+      transform: translateY(-2px);
+    }
+
+    .contact-quote {
+      padding: 70px 20px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+
+    .contact-quote h2 {
+      font-size: clamp(25px, 4vw, 40px);
+      font-style: italic;
+      color: var(--brown);
+      max-width: 750px;
+      margin: auto;
+      line-height: 1.5;
+    }
+
+    .contact-quote p {
+      margin-top: 15px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 25px 40px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    footer p {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .fade-in {
+      animation: fadeIn 0.8s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .nav-inner {
+        padding: 18px 25px;
+      }
+
+      .container {
+        padding: 0 25px;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-info {
+        min-height: 400px;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .nav-inner {
+        padding: 16px 20px;
+      }
+
+      .logo {
+        font-size: 27px;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        gap: 0;
+        background: var(--cream);
+        border-bottom: 1px solid var(--border);
+        padding: 10px 20px 20px;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 13px 0;
+      }
+
+      .nav-links a.active::after {
+        display: none;
+      }
+
+      .contact-hero {
+        padding: 65px 0 40px;
+      }
+
+      .contact-hero h1 {
+        font-size: 43px;
+      }
+
+      .contact-hero p {
+        font-size: 14px;
+      }
+
+      .contact-section {
+        padding: 25px 0 65px;
+      }
+
+      .contact-info,
+      .contact-form {
+        padding: 28px 22px;
+        border-radius: 16px;
+      }
+
+      .contact-info h2,
+      .contact-form h2 {
+        font-size: 29px;
+      }
+
+      .contact-info {
+        min-height: 420px;
+      }
+
+      .info-item {
+        gap: 12px;
+      }
+
+      .info-icon {
+        width: 43px;
+        height: 43px;
+      }
+
+      .contact-quote {
+        padding: 50px 20px;
+      }
+
+      footer {
+        padding: 22px 15px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .contact-hero h1 {
+        font-size: 36px;
+      }
+
+      .contact-info,
+      .contact-form {
+        padding: 22px 17px;
+      }
+
+      .social-links a {
+        padding: 8px 13px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="logo">Sofi.</a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Buka menu" aria-expanded="false">
+        ☰
+      </button>
+
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="skills.html">Skills</a>
+        <a href="contact.html" class="active">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="contact-hero fade-in">
+    <div class="container">
+      <p class="section-label">Get in touch</p>
+      <h1>Let's make something<br><span>meaningful.</span></h1>
+      <p>
+        Terima kasih telah mengunjungi portfolio saya.
+        Jika ingin berdiskusi, berkolaborasi, atau sekadar menyapa,
+        saya akan senang mendengar kabar dari Anda.
+      </p>
+    </div>
+  </section>
+
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-grid fade-in">
+
+        <div class="contact-info">
+          <h2>Let's connect.</h2>
+          <p>
+            Jangan ragu untuk menghubungi saya.
+            Saya terbuka untuk ide, kesempatan, dan pengalaman baru.
+          </p>
+
+          <div class="info-item">
+            <div class="info-icon">✉</div>
+            <div>
+              <h4>Email</h4>
+              <a href="mailto:sofiaulia@email.com">
+                sofiaulia@email.com
+              </a>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon">📍</div>
+            <div>
+              <h4>Location</h4>
+              <p>Indonesia</p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon">💬</div>
+            <div>
+              <h4>WhatsApp</h4>
+              <a href="https://wa.me/628123456789" target="_blank">
+                Chat with me
+              </a>
+            </div>
+          </div>
+
+          <div class="social-area">
+            <h4>Find me on</h4>
+            <div class="social-links">
+              <a href="https://instagram.com/" target="_blank">Instagram ↗</a>
+              <a href="https://linkedin.com/" target="_blank">LinkedIn ↗</a>
+              <a href="https://github.com/" target="_blank">GitHub ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form">
+          <h2>Send a message.</h2>
+          <p class="form-desc">
+            Isi formulir di bawah ini untuk mengirim pesan kepada saya.
+          </p>
+
+          <form id="contactForm">
+
+            <div class="form-group">
+              <label for="name">Your name</label>
+              <input type="text" id="name" name="name" placeholder="Masukkan nama Anda" required>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Your email</label>
+              <input type="email" id="email" name="email" placeholder="nama@email.com" required>
+            </div>
+
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <input type="text" id="subject" name="subject" placeholder="Apa yang ingin dibicarakan?" required>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Your message</label>
+              <textarea id="message" name="message" placeholder="Tuliskan pesan Anda di sini..." required></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">
+              Send Message &nbsp; →
+            </button>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-quote fade-in">
+    <h2>"Every meaningful connection begins with a simple hello."</h2>
+    <p>Thank you for being here.</p>
+  </section>
+
+  <footer>
+    <p>© 2026 Sofi Aulia &nbsp;·&nbsp; Made with care & creativity.</p>
+  </footer>
+
+
+  <script>
+    // Mobile menu
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', function () {
+      navLinks.classList.toggle('show');
+
+      const isOpen = navLinks.classList.contains('show');
+      menuToggle.setAttribute('aria-expanded', isOpen);
+      menuToggle.innerHTML = isOpen ? '✕' : '☰';
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('show');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.innerHTML = '☰';
+      });
+    });
+
+    document.getElementById('contactForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const subject = document.getElementById('subject').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      const phoneNumber = '628123456789'; // Ganti dengan nomor WhatsApp Anda
+
+      const text =
+        `Halo Sofi!\n\n` +
+        `Nama: ${name}\n` +
+        `Email: ${email}\n` +
+        `Subjek: ${subject}\n\n` +
+        `Pesan:\n${message}`;
+
+      const whatsappURL =
+        `https://wa.me/${phoneNumber}?text=${encodeURIComponent(text)}`;
+
+      window.open(whatsappURL, '_blank');
+    });
+  </script>
+
+</body>
+
+</html>

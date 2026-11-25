@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sofi Aulia | Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap"
+    rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --white: #fffdfa;
+      --brown: #8a725b;
+      --dark: #302b26;
+      --muted: #817970;
+      --border: #e8dfd5;
+      --soft: #eee5db;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--dark);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(247, 244, 239, 0.95);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px 35px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 29px;
+      font-weight: 700;
+      letter-spacing: -1px;
+    }
+
+    .logo span {
+      color: var(--brown);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 13px;
+      transition: 0.3s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 1px;
+      bottom: -5px;
+      left: 0;
+      background: var(--brown);
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--brown);
+    }
+
+    .menu-toggle {
+      display: none;
+      border: none;
+      background: none;
+      font-size: 25px;
+      cursor: pointer;
+      color: var(--dark);
+    }
+
+    .container {
+      max-width: 1200px;
+      width: 100%;
+      padding: 0 35px;
+      margin: auto;
+    }
+
+    .hero {
+      min-height: 88vh;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: center;
+      gap: 85px;
+      padding: 70px 0;
+    }
+
+    .eyebrow {
+      color: var(--brown);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(48px, 6.5vw, 82px);
+      font-weight: 500;
+      letter-spacing: -2px;
+      line-height: 1.12;
+      margin: 22px 0;
+    }
+
+    .hero-title span {
+      color: var(--brown);
+      font-style: italic;
+    }
+
+    .hero-description {
+      max-width: 490px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.9;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 32px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 26px;
+      font-size: 13px;
+      border-radius: 4px;
+      transition: 0.3s ease;
+    }
+
+    .btn-dark {
+      background: var(--brown);
+      color: white;
+      border: 1px solid var(--brown);
+    }
+
+    .btn-dark:hover {
+      background: var(--dark);
+      border-color: var(--dark);
+      transform: translateY(-3px);
+    }
+
+    .btn-light {
+      border: 1px solid var(--border);
+      color: var(--brown);
+      background: transparent;
+    }
+
+    .btn-light:hover {
+      background: var(--soft);
+      transform: translateY(-3px);
+    }
+
+    .hero-image {
+      width: 100%;
+      max-width: 390px;
+      position: relative;
+      margin-left: auto;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 510px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 220px 220px 14px 14px;
+      box-shadow: 0 25px 60px rgba(80, 57, 37, 0.10);
+    }
+
+    .image-label {
+      position: absolute;
+      bottom: 24px;
+      left: -40px;
+      padding: 17px 22px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: 0 12px 35px rgba(60, 45, 30, 0.08);
+    }
+
+    .image-label strong {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .image-label small {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 24px 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .fade-in {
+      animation: fadeIn 1s ease both;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid {
+        gap: 45px;
+      }
+
+      .hero-image img {
+        height: 430px;
+      }
+
+      .image-label {
+        left: -20px;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .nav-inner {
+        padding: 16px 22px;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--bg);
+        border-bottom: 1px solid var(--border);
+        padding: 12px 22px 20px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .nav-links li {
+        width: 100%;
+      }
+
+      .nav-links a {
+        display: block;
+        padding: 12px 0;
+      }
+
+      .container {
+        padding: 0 22px;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+        padding: 55px 0;
+      }
+
+      .hero-content {
+        text-align: center;
+      }
+
+      .hero-title {
+        font-size: clamp(43px, 12vw, 60px);
+        letter-spacing: -1.5px;
+      }
+
+      .hero-description {
+        margin: auto;
+        font-size: 14px;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+      }
+
+      .hero-image {
+        max-width: 290px;
+        margin: auto;
+      }
+
+      .hero-image img {
+        height: 390px;
+      }
+
+      .image-label {
+        left: -12px;
+        bottom: 15px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .hero-title {
+        font-size: 42px;
+      }
+
+      .hero-image {
+        max-width: 250px;
+      }
+
+      .hero-image img {
+        height: 340px;
+      }
+
+      .btn {
+        padding: 12px 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <div class="nav-inner">
+
+      <a href="index.html" class="logo">Sofi<span>.</span></a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Buka menu" aria-expanded="false">
+        &#9776;
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="skills.html">Skills</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+
+    </div>
+  </nav>
+
+  <main class="hero">
+    <div class="container hero-grid">
+
+      <div class="hero-content fade-in">
+        <div class="eyebrow">Welcome to my personal website</div>
+
+        <h1 class="hero-title">
+          Hello, I'm<br>
+          <span>Sofi Aulia.</span>
+        </h1>
+
+        <p class="hero-description">
+          Mahasiswa Sistem Informasi yang tertarik pada dunia teknologi,
+          pengembangan website, desain, dan kreativitas digital.
+          Selamat datang di ruang kecil untuk mengenal saya dan karya saya.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="about.html" class="btn btn-dark">Discover More ↗</a>
+          <a href="contact.html" class="btn btn-light">Contact Me</a>
+        </div>
+      </div>
+
+      <!-- FOTO PROFIL -->
+      <div class="hero-image fade-in">
+        <img src="diri.png" alt="Foto profil Sofi">
+
+        <div class="image-label">
+          <strong>Information Systems</strong><br>
+          <small>Student &amp; Creative Learner</small>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>&copy; 2026 Sofi Aulia</span>
+      <span>Made with care &amp; creativity.</span>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    menuToggle.addEventListener("click", function () {
+      navLinks.classList.toggle("show");
+
+      const open = navLinks.classList.contains("show");
+
+      menuToggle.setAttribute("aria-expanded", open);
+      menuToggle.innerHTML = open ? "&times;" : "&#9776;";
+    });
+
+    document.querySelectorAll("#navLinks a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        navLinks.classList.remove("show");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.innerHTML = "&#9776;";
+      });
+    });
+  </script>
+
+</body>
+
+</html>
